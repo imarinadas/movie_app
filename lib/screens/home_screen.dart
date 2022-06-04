@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:movies_app_flutter/screens/towatch_list.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:movies_app_flutter/main.dart';
-import 'package:movies_app_flutter/screens/drawer_screen.dart';
 import 'package:movies_app_flutter/screens/finder_screen.dart';
 import 'package:movies_app_flutter/utils/constants.dart';
 import 'package:movies_app_flutter/utils/file_manager.dart' as file;
@@ -127,6 +127,7 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   buttonSecondOnPressed: (index) =>
                       movieCategorySwitcher(index),
                   buttonThirdOnPressed: (index) => movieCategorySwitcher(index),
+                  buttonFourthOnPressed: (index) => movieCategorySwitcher(index),
                   searchOnPressed: () => navi.newScreen(
                     context: context,
                     newScreen: () => FinderScreen(
@@ -152,6 +153,27 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               index: bottomBarIndex,
               children: [
                 BottomNavigationItem(
+                  icon: Icon(Icons.add_circle),
+                  iconSize: 30.sp,
+                  onPressed: () {
+                    logindata.setBool('login', true);
+                    Navigator.pushReplacement(context,
+                        new MaterialPageRoute(builder: (context) => TowatchList())); },
+                ),
+                BottomNavigationItem(
+                  icon: Icon(Icons.videocam),
+                  iconSize: 25.sp,
+                  onPressed: () {
+                    pageSwitcher(1);
+                  },
+                ),
+                BottomNavigationItem(
+                    icon: Icon(Icons.bookmark_sharp),
+                    iconSize: 20.sp,
+                    onPressed: () {
+                      pageSwitcher(2);
+                    }),
+                BottomNavigationItem(
                   icon: Icon(Icons.exit_to_app_rounded),
                   iconSize: 35.sp,
                   onPressed: () {
@@ -159,19 +181,6 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     Navigator.pushReplacement(context,
                         new MaterialPageRoute(builder: (context) => MyLoginPage())); },
                 ),
-                BottomNavigationItem(
-                  icon: Icon(Icons.videocam),
-                  iconSize: 28.sp,
-                  onPressed: () {
-                    pageSwitcher(1);
-                  },
-                ),
-                BottomNavigationItem(
-                    icon: Icon(Icons.bookmark_sharp),
-                    iconSize: 23.sp,
-                    onPressed: () {
-                      pageSwitcher(2);
-                    }),
               ],
             ),
             floatingActionButton: showBackToTopButton

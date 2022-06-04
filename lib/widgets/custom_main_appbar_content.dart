@@ -10,11 +10,13 @@ class CustomMainAppBarContent extends StatefulWidget {
   final Function(int)? buttonFistOnPressed;
   final Function(int)? buttonSecondOnPressed;
   final Function(int)? buttonThirdOnPressed;
+  final Function(int)? buttonFourthOnPressed;
   final bool showSlider;
   final int? activeButtonIndex;
   Color _firstColor = kLightGrey;
   Color _secondColor = kLightGrey;
   Color _thirdColor = kLightGrey;
+  Color _fourthColor = kLightGrey;
 
   CustomMainAppBarContent({
     required this.showSlider,
@@ -25,6 +27,7 @@ class CustomMainAppBarContent extends StatefulWidget {
     this.buttonFistOnPressed,
     this.buttonSecondOnPressed,
     this.buttonThirdOnPressed,
+    this.buttonFourthOnPressed,
   }) {
     if (activeButtonIndex != null) changeButtonsColor(activeButtonIndex!);
   }
@@ -35,16 +38,25 @@ class CustomMainAppBarContent extends StatefulWidget {
         _firstColor = activeColor!;
         _secondColor = kLightGrey;
         _thirdColor = kLightGrey;
+        _fourthColor = kLightGrey;
         break;
       case 1:
         _firstColor = kLightGrey;
         _secondColor = activeColor!;
         _thirdColor = kLightGrey;
+        _fourthColor = kLightGrey;
+        break;
+      case 2:
+        _firstColor = kLightGrey;
+        _secondColor = kLightGrey;
+        _thirdColor = activeColor!;
+        _fourthColor = kLightGrey;
         break;
       default:
         _firstColor = kLightGrey;
         _secondColor = kLightGrey;
-        _thirdColor = activeColor!;
+        _thirdColor = kLightGrey;
+        _fourthColor = activeColor!;
     }
   }
 
@@ -108,6 +120,16 @@ class _CustomMainAppBarContentState extends State<CustomMainAppBarContent> {
                         });
                       },
                       color: widget._thirdColor,
+                    ),
+                    SizedBox(width: 5.w),
+                    CustomMoviesButton(
+                      text: kHomeScreenButtonThirdText,
+                      onPressed: () {
+                        setState(() {
+                          widget.buttonFourthOnPressed!(3);
+                        });
+                      },
+                      color: widget._fourthColor,
                     ),
                   ],
                 ),
