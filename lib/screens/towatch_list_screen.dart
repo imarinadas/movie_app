@@ -23,7 +23,7 @@ class _TowatchListScreenState extends State<TowatchListScreen> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text(widget.title),
+          title: Text('To Watch'),
           centerTitle: true,
     ),
         body: ValueListenableBuilder(
