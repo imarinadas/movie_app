@@ -3,20 +3,18 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:movies_app_flutter/screens/home_screen.dart';
 import 'package:sizer/sizer.dart';
-import 'model/towatch_list_model.dart';
+import 'model/boxes.dart';
+import 'package:movies_app_flutter/model/towatch.dart';
 import 'utils/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
-  initiateLocalDB();
+Future<void> main() async {
+  Hive.initFlutter();
+  Hive.registerAdapter(TowatchAdapter());
+  await Hive.openBox<Towatch>(HiveBoxex.towatch);
   runApp(MyApp());
 }
 
-void initiateLocalDB() async{
-  await Hive.initFlutter();
-  Hive.registerAdapter(TowatchListModelAdapter());
-  await Hive.openBox<TowatchListModel>("towatch_list");
-}
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

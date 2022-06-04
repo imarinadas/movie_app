@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:movies_app_flutter/screens/towatch_list.dart';
+import 'package:movies_app_flutter/screens/towatch_list_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:movies_app_flutter/main.dart';
 import 'package:movies_app_flutter/screens/finder_screen.dart';
@@ -158,7 +158,7 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   onPressed: () {
                     logindata.setBool('login', true);
                     Navigator.pushReplacement(context,
-                        new MaterialPageRoute(builder: (context) => TowatchList())); },
+                        new MaterialPageRoute(builder: (context) => TowatchListScreen(title: '',))); },
                 ),
                 BottomNavigationItem(
                   icon: Icon(Icons.videocam),
